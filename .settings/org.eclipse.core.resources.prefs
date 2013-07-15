@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/chessgame/Board.java=UTF-8
+encoding//src/pieces/Pawn.java=UTF-8
+encoding//test/chessgame/BoardTest.java=UTF-8
+encoding//test/pieces/PawnTest.java=UTF-8
