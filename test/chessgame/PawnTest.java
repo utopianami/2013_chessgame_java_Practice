@@ -5,12 +5,16 @@ import junit.framework.TestCase;
 public class PawnTest extends TestCase {
 	public void testCreate() throws Exception {
 		
-		String a = "white";
-		String b = "black";
+		String player1 = "white";
+		String player2 = "black";
 		
 		
-		Pawn firstPawn = new Pawn(a); 
-		Pawn secondPawn = new Pawn(b);
+		Pawn youngnam = new Pawn(player1); 
+		Pawn soojung = new Pawn(player2);
+		
+		
+		String actual = youngnam.color;
+		assertEquals("white", actual);
 
 		
 	}
