@@ -10,14 +10,14 @@ public class PawnTest extends TestCase {
 	
 	public void setUp(){
 		//테스트 전 공통적인 인스터스 모음   
-		youngnam = new Pawn(Pawn.PLAYER_BLACK);
+		youngnam = new Pawn(Pawn.PLAYER_WHITE);
 		soojung = new Pawn(Pawn.PLAYER_BLACK);
 	}
 	
 	public void testCreate() throws Exception {
 		//인스턴스 생성 확인 
 		String actual = youngnam.color;
-		assertEquals(Pawn.PLAYER_BLACK, actual);
+		assertEquals(Pawn.PLAYER_WHITE, actual);
 		
 		actual = soojung.color;
 		assertEquals(Pawn.PLAYER_BLACK, actual);
