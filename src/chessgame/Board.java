@@ -35,6 +35,7 @@ public class Board {
 	 * @param 확인하고 하자는 말의 순번 
 	 * @return 순번에 해당하는 인스턴스 
 	 */
+	
 	public Pawn getPieces(int index) {
 		return chessPieces.get(index);
 	}

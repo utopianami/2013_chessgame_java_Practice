@@ -7,8 +7,8 @@ package pieces;
 
 public class Pawn {
 	String color;
-	String player1 = "white";
-	String player2 = "black";
+	public static String PLAYER_WHITE = "white";
+	public static String PLAYER_BLACK = "black";
 
 	
 	/**
@@ -23,7 +23,7 @@ public class Pawn {
 	 * 생성자에 인자값이 없을 경우 기본 값을 player1 = "white"로 설정 
 	 */
 	public Pawn() {
-		this.color = player1;
+		this.color = PLAYER_WHITE;
 	}
 
 }
