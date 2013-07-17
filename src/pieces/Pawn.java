@@ -11,8 +11,8 @@ public class Pawn {
 	public static String PLAYER_BLACK = "black";
 	public static String EMPTY = "empty";
 	
-	public String color;
-	public String pawnPrint;
+	public String color; // player 말 
+	public String pawnPrint; //보드판 출력 
 
 	
 	/**
@@ -22,26 +22,24 @@ public class Pawn {
 	public Pawn(String player) {
 		this.color = player;
 		
-		//화면출력 백은 소문자, 흑은 대문자 
-		if (this.color == "white"){
+		//보드판 출력 상수인 pawnPrint 값 결정  
+		if (this.color == "white"){ //white는 소문자 
 			this.pawnPrint = "p";
 		}
 		
-		else if (this.color =="black"){
+		else if (this.color =="black"){ //black는 대문자 
 			this.pawnPrint = "P";
 		}
 		else{
-			this.pawnPrint = ".";
+			this.pawnPrint = "."; //empty인 경우 .
 		}
 	}
 
 	/**
-	 * 생성자에 인자값이 없을 경우 기본 값을 player1 = "white"로 설정 
+	 * 생성자에 인자값이 없을 경우 기본 값을 PLAYET_WHITE = "white"로 설정 
 	 */
 	public Pawn() {
 		this.color = PLAYER_WHITE;
-		this.pawnPrint = ".";
+		this.pawnPrint = "p";
 	}
-
-
 }
