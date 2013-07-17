@@ -6,9 +6,12 @@ package pieces;
  */
 
 public class Pawn {
-	String color;
+	
 	public static String PLAYER_WHITE = "white";
 	public static String PLAYER_BLACK = "black";
+	
+	String color;
+	char PawnPrint;
 
 	
 	/**
@@ -17,6 +20,15 @@ public class Pawn {
 	 */
 	public Pawn(String player) {
 		this.color = player;
+		
+		//화면출력 백은 소문자, 흑은 대문자 
+		if (this.color == "white"){
+			this.PawnPrint = 'p';
+		}
+		
+		else{
+			this.PawnPrint = 'P';
+		}
 	}
 
 	/**
@@ -25,5 +37,6 @@ public class Pawn {
 	public Pawn() {
 		this.color = PLAYER_WHITE;
 	}
+
 
 }
