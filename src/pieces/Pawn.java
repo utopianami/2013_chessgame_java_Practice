@@ -9,9 +9,10 @@ public class Pawn {
 	
 	public static String PLAYER_WHITE = "white";
 	public static String PLAYER_BLACK = "black";
+	public static String EMPTY = "empty";
 	
-	String color;
-	char PawnPrint;
+	public String color;
+	public String pawnPrint;
 
 	
 	/**
@@ -23,11 +24,14 @@ public class Pawn {
 		
 		//화면출력 백은 소문자, 흑은 대문자 
 		if (this.color == "white"){
-			this.PawnPrint = 'p';
+			this.pawnPrint = "p";
 		}
 		
+		else if (this.color =="black"){
+			this.pawnPrint = "P";
+		}
 		else{
-			this.PawnPrint = 'P';
+			this.pawnPrint = ".";
 		}
 	}
 
@@ -36,6 +40,7 @@ public class Pawn {
 	 */
 	public Pawn() {
 		this.color = PLAYER_WHITE;
+		this.pawnPrint = ".";
 	}
 
 

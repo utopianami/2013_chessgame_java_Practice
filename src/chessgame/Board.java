@@ -1,6 +1,7 @@
 package chessgame;
 
 import pieces.Pawn;
+
 import java.util.ArrayList;
 
 /**
@@ -11,33 +12,53 @@ import java.util.ArrayList;
 
 public class Board {
 	
-	private ArrayList<Pawn> chessPieces = new ArrayList<Pawn>();
-
-	/**
-	 * 체스판 위에 있는 말의 수 확인 
-	 * @return 현재 체스판 위에 있는 말의 수 
-	 */
-	public int getPiecesNumber() {
-		return chessPieces.size();
-	}
-
-	/**
-	 * 체스판 위에 말을 추가하는 함수 
-	 * @param 체스판 위에 추가하고자 하는 말 
-	 */
-	public void enroll(Pawn player) {
-		chessPieces.add(player);
-	}
-
+	static final String NEWLINE = System.getProperty("line.separator");
 	
-	/**
-	 * 체스판 위에 말을 확인하는 함수 
-	 * @param 확인하고 하자는 말의 순번 
-	 * @return 순번에 해당하는 인스턴스 
-	 */
+	public ArrayList<ArrayList<Pawn>> chessBoard = new ArrayList<ArrayList<Pawn>>();
 	
-	public Pawn getPieces(int index) {
-		return chessPieces.get(index);
+	//생성자 
+	public Board(){			
 	}
 	
+	//Board_구성 
+	public void initalizeBoard() {
+		this.setLow(); //열 생성 
+		this.setEmptyLine(); //빈공간 생성  
+		this.setPawnLine(); //Pawn 정렬 
+		}
+	
+	
+	public void setLow(){
+		for(int i = 0; i < 8 ; i++){
+			chessBoard.add(i, new ArrayList<Pawn>());
+		}	
+	}
+	
+	public void setEmptyLine(){
+		for(int i = 0 ; i < 8 ; i++){
+			for(int j = 0; j<8 ; j++){
+				chessBoard.get(i).add(j, new Pawn(Pawn.EMPTY));
+			}
+		}
+	}
+	
+	public void setPawnLine(){
+		for(int i = 0; i < 8 ; i++){
+			chessBoard.get(1).set(i, new Pawn(Pawn.PLAYER_BLACK));
+			chessBoard.get(6).set(i, new Pawn(Pawn.PLAYER_WHITE));
+		}
+	}
+
+	public String boardPrint() {
+		StringBuilder boardPrint = new StringBuilder();
+		
+		for(int i = 0 ; i < 8 ; i++){
+			for(int j = 0; j<8 ; j++){
+				boardPrint.append(chessBoard.get(i).get(j).pawnPrint);
+			}
+			boardPrint.append(NEWLINE);
+		}
+		
+		return boardPrint.toString();
+	}
 }

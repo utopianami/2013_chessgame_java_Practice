@@ -22,6 +22,8 @@ public class PawnTest extends TestCase {
 		actual = soojung.color;
 		assertEquals(Pawn.PLAYER_BLACK, actual);
 		
+		//print 
+		
 	}
 	
 	public void testCreate2() throws Exception {
@@ -34,8 +36,8 @@ public class PawnTest extends TestCase {
 	
 	public void testPawnColor() throws Exception {
 		//검은색 폰은 'P', 흰색폰은 'p'출력 
-		assertEquals('p', youngnam.PawnPrint); //백색 
-		assertEquals('P', soojung.PawnPrint); //흑색  
+		assertEquals('p', youngnam.pawnPrint); //백색 
+		assertEquals('P', soojung.pawnPrint); //흑색  
 		
 	}
 }
