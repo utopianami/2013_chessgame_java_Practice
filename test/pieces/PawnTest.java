@@ -3,41 +3,25 @@ package pieces;
 import pieces.Pawn;
 import junit.framework.TestCase;
 
+
 public class PawnTest extends TestCase {
 	
-	private Pawn youngnam;
-	private Pawn soojung;
+
 	
-	public void setUp(){
-		//테스트 전 공통적인 인스터스 모음   
-		youngnam = new Pawn(Pawn.PLAYER_WHITE);
-		soojung = new Pawn(Pawn.PLAYER_BLACK);
-	}
-	
+	//Pawn Class 생성 확인 테스트 코드 
 	public void testCreate() throws Exception {
-		//인스턴스 생성 확인 
-		String actual = youngnam.color;
-		assertEquals(Pawn.PLAYER_WHITE, actual);
 		
-		actual = soojung.color;
-		assertEquals(Pawn.PLAYER_BLACK, actual);
+		//생성 후 색깔 확인 
+		assertEquals(Pawn.BLACK_PLAYER, new Pawn(Pawn.BLACK_PLAYER, Pawn.PAWN_SYMBOL).getColor());
+		assertEquals(Pawn.WHITE_PLAYER, new Pawn(Pawn.WHITE_PLAYER, Pawn.PAWN_SYMBOL).getColor());
 		
-		//print 
-		
-	}
-	
-	public void testCreate2() throws Exception {
-		//생성자에 인자값이 없는 경우 초기값을 "white"로 설정 
-		new Pawn();
-		assertEquals(Pawn.PLAYER_WHITE, new Pawn().color);
-	}
-	
-	
-	
-	public void testPawnColor() throws Exception {
-		//검은색 폰은 'P', 흰색폰은 'p'출력 
-		assertEquals('p', youngnam.pawnPrint); //백색 
-		assertEquals('P', soojung.pawnPrint); //흑색  
-		
+		//생성 후 심볼 확인(체스판에 출력될 값)
+		assertEquals('P', new Pawn(Pawn.BLACK_PLAYER, Pawn.PAWN_SYMBOL).getSymbol()); //검은색 말 확인 : 대문자 'P' 
+		assertEquals('p', new Pawn(Pawn.WHITE_PLAYER, Pawn.PAWN_SYMBOL).getSymbol()); //흰색 말 확인 : 소문자 'p'
+
+		//생성 후 심볼 출력 
+		System.out.println(new Pawn(Pawn.BLACK_PLAYER, Pawn.PAWN_SYMBOL).getSymbol());
+		System.out.println(new Pawn(Pawn.WHITE_PLAYER, Pawn.PAWN_SYMBOL).getSymbol());
+		System.out.println(new Pawn(Pawn.EMPTY, Pawn.EMPTY_SYMBOL).getSymbol());
 	}
 }
