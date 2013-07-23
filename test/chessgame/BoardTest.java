@@ -1,9 +1,20 @@
 package chessgame;
 
-import pieces.Pawn;
+import pieces.Piece;
 import junit.framework.TestCase;
 
 public class BoardTest extends TestCase {
+	
+	private Board board;
+	
+	protected void setUp() {
+		board = new Board();
+	}
+	
+	public void testCreate() throws Exception {
+		board.piecesCount();
+		assertEquals(32, board.piecesCount());
+	}
 	
 	//Board 생성 확인 
 	public void testInit() throws Exception {
@@ -16,8 +27,19 @@ public class BoardTest extends TestCase {
 	public void testGetState() throws Exception {
 		
 		//0행, 1열 위치 확인 
-		assertEquals('.', new Board().getMapInfo(0,1));
+		assertEquals('N', new Board().getMapInfo(0,1));
+		assertEquals('B', new Board().getMapInfo(0,2));
 		
+	}
+	
+	public void testCheckPeice() throws Exception {
+		//검은색 말 수 확인
+		System.out.println(board.checkBlack(Piece.BLACK_PLAYER));
+		assertEquals(16, board.checkBlack(Piece.BLACK_PLAYER));
+
+		//흰색말 수 확인 
+		System.out.println(board.checkBlack(Piece.WHITE_PLAYER));
+		assertEquals(16, board.checkBlack(Piece.WHITE_PLAYER));
 	}
 
 }

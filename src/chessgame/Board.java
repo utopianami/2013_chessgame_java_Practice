@@ -1,6 +1,8 @@
 package chessgame;
 
 import pieces.*;
+import sun.invoke.empty.Empty;
+
 import java.util.ArrayList;
 
 
@@ -18,12 +20,18 @@ public class Board {
 	
 	//체스판에 쓰일 2차원 배열 chessBoard 선언
 	//<Row> Row class의 배열, Row 클래스는 또 다른 배열(체스판의 행)
-	ArrayList<ArrayList<Pawn>> chessBoard = new ArrayList<ArrayList<Pawn>>();
+	ArrayList<ArrayList<Piece>> chessBoard = new ArrayList<ArrayList<Piece>>();
 	
-	//생성 
+	//생성자 
 	public Board(){
 		
 		for (int row = 0; row < ROW_LENGTH; row++){
+			
+			//Black_Line 초기화 
+			if (row ==0){
+				chessBoard.add(new Row().initBlackLine());				
+				continue;
+			}
 			
 			//Black_Pawn 초기화 
 			if (row == 1){
@@ -34,6 +42,12 @@ public class Board {
 			//White_Pawn 초기화 
 			if (row == 6){
 				chessBoard.add(new Row().initWhitePawn());
+				continue;
+			}
+			
+			//White_Line 초기화 
+			if (row == 7){
+				chessBoard.add(new Row().initWhiteLine());
 				continue;
 			}
 			
@@ -51,7 +65,38 @@ public class Board {
 	 * @return 찾은 좌표값(행, 열)의 SYMBOL
 	 */
 	public char getMapInfo(int row, int col) {
-		return chessBoard.get(row).get(col).getSymbol();
+		return chessBoard.get(row).get(col).getName();
+	}
+
+
+	/**
+	 * 보드판 위에 있는 숫자 확인
+	 * @return
+	 */
+	public int piecesCount() {
+		int count = 0;
+		for (int row = 0; row < ROW_LENGTH; row++) {
+			for (int column = 0; column < COLUM_LENGTH; column++) {
+				if (chessBoard.get(row).get(column).getColor() != Piece.EMPTY_PLAYER ){
+					count += 1;
+				}
+			}
+		}
+		return count;
+	}
+
+
+
+	public int checkBlack(String color) {
+		int count = 0;
+		for (int row = 0; row < ROW_LENGTH; row++) {
+			for (int column = 0; column < COLUM_LENGTH; column++) {
+				if (chessBoard.get(row).get(column).getColor() == color ){
+					count += 1;
+				}
+			}
+		}
+		return count;				
 	}
 	
 }

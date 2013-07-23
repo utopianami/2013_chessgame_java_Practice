@@ -2,6 +2,7 @@ package chessgame;
 
 
 import junit.framework.TestCase;
+import util.StringUtil;
 
 public class RowTest extends TestCase {
 	Board youngnamBoard;
@@ -15,7 +16,7 @@ public class RowTest extends TestCase {
 	public void testInitEmpty() throws Exception {	
 		new Row().initBlackPawn();
 		System.out.println(new Row().linePrint(youngnamBoard.chessBoard.get(0)));
-		assertEquals("........", new Row().linePrint(youngnamBoard.chessBoard.get(0)));
+		assertEquals("........", new Row().linePrint(youngnamBoard.chessBoard.get(4)));
 	}
 	
 	//체스판 BALCK_PAWN 초기화 
@@ -34,10 +35,25 @@ public class RowTest extends TestCase {
 		assertEquals("pppppppp", new Row().linePrint(youngnamBoard.chessBoard.get(6)));
 	}
 
-	
+	//보드판 모습 확인 
 	public void testBoardPrint() throws Exception {		
 		System.out.println("boardPrint 메소드 테스트 결과");		
 		System.out.println(new Row().boardPrint(youngnamBoard.chessBoard));		
-		System.out.println("boardPrint 메소드 테스트 결과완료 ");		
+		System.out.println("boardPrint 메소드 테스트 결과완료 ");
+		
+		String blankRank = StringUtil.appendNewLine("........");
+		assertEquals(
+		StringUtil.appendNewLine("RNBQKBNR") +
+		StringUtil.appendNewLine("PPPPPPPP") +
+		blankRank + blankRank +blankRank +blankRank +
+		StringUtil.appendNewLine("pppppppp") +
+		StringUtil.appendNewLine("rnbqkbnr") + blankRank, new Row().boardPrint(youngnamBoard.chessBoard));
+		
+		System.out.println(
+				StringUtil.appendNewLine("RNBQKBNR") +
+				StringUtil.appendNewLine("PPPPPPPP") +
+				blankRank + blankRank +blankRank +blankRank +
+				StringUtil.appendNewLine("pppppppp") +
+				StringUtil.appendNewLine("rnbqkbnr") + blankRank);
 	}
 }
