@@ -8,7 +8,7 @@ public class StringUtil {
 	}
 
 	public static String appendNewLine(String string) {
-		return string;
+		return string+NEWLINE;
 	}
 
 }

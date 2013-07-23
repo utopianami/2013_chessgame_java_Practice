@@ -1,7 +1,6 @@
 package chessgame;
 
 import pieces.*;
-import sun.invoke.empty.Empty;
 
 import java.util.ArrayList;
 
