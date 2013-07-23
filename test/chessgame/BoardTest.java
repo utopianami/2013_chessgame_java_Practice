@@ -34,12 +34,12 @@ public class BoardTest extends TestCase {
 	
 	public void testCheckPeice() throws Exception {
 		//검은색 말 수 확인
-		System.out.println(board.checkBlack(Piece.BLACK_PLAYER));
-		assertEquals(16, board.checkBlack(Piece.BLACK_PLAYER));
+		System.out.println(board.checkPiece(Piece.BLACK_PLAYER));
+		assertEquals(16, board.checkPiece(Piece.BLACK_PLAYER));
 
 		//흰색말 수 확인 
-		System.out.println(board.checkBlack(Piece.WHITE_PLAYER));
-		assertEquals(16, board.checkBlack(Piece.WHITE_PLAYER));
+		System.out.println(board.checkPiece(Piece.WHITE_PLAYER));
+		assertEquals(16, board.checkPiece(Piece.WHITE_PLAYER));
 	}
 
 }

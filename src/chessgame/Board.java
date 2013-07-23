@@ -87,7 +87,7 @@ public class Board {
 
 
 
-	public int checkBlack(String color) {
+	public int checkPiece(String color) {
 		int count = 0;
 		for (int row = 0; row < ROW_LENGTH; row++) {
 			for (int column = 0; column < COLUM_LENGTH; column++) {
