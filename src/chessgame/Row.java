@@ -1,10 +1,10 @@
 package chessgame;
 
 import pieces.*;
+import static pieces.Piece.Color.*;
 
 import java.util.ArrayList;
 
-import static util.StringUtil.NEWLINE;
 
 public class Row {
 	
@@ -18,7 +18,7 @@ public class Row {
 	 */
 	public void initEmpty() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
-			rowList.add(Piece.create(Piece.EMPTY, Piece.EMPTY_PLAYER));
+			rowList.add(Piece.createEmpty());
 		}
 	}
 	
@@ -28,7 +28,7 @@ public class Row {
 	 */
 	public void initBlackPawn() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
-			rowList.add(Piece.create(Piece.PAWN, Piece.BLACK_PLAYER));
+			rowList.add(Piece.createBlackPawn());
 		}
 	}
 	
@@ -38,7 +38,7 @@ public class Row {
 	 */
 	public void initWhitePawn() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
-			rowList.add(Piece.create(Piece.PAWN, Piece.WHITE_PLAYER));
+			rowList.add(Piece.createWhitePawn());
 		}
 	}
 	
@@ -47,14 +47,14 @@ public class Row {
 	 * @return 검은색 말 초기화를 마친 row(행) 위치
 	 */
 	public void initBlackLine() {
-		rowList.add(Piece.create(Piece.ROOK, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.KNIGHT, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.BISHOP, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.QUEEN, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.KING, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.BISHOP, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.KNIGHT, Piece.BLACK_PLAYER));
-		rowList.add(Piece.create(Piece.ROOK, Piece.BLACK_PLAYER));
+		rowList.add(Piece.createBlackRook());
+		rowList.add(Piece.createBlackKnight());
+		rowList.add(Piece.createBlackBishop());
+		rowList.add(Piece.createBlackQueen());
+		rowList.add(Piece.createBlackKing());
+		rowList.add(Piece.createBlackBishop());
+		rowList.add(Piece.createBlackKnight());
+		rowList.add(Piece.createBlackRook());
 	}
 	
 	/**
@@ -62,14 +62,14 @@ public class Row {
 	 * @return 흰색색 말 초기화를 마친 row(행) 위치
 	 */
 	public void initWhiteLine() {
-		rowList.add(Piece.create(Piece.ROOK, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.KNIGHT, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.BISHOP, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.QUEEN, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.KING, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.BISHOP, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.KNIGHT, Piece.WHITE_PLAYER));
-		rowList.add(Piece.create(Piece.ROOK, Piece.WHITE_PLAYER));
+		rowList.add(Piece.createWhiteRook());
+		rowList.add(Piece.createWhiteKnight());
+		rowList.add(Piece.createWhiteBishop());
+		rowList.add(Piece.createWhiteQueen());
+		rowList.add(Piece.createWhiteKing());
+		rowList.add(Piece.createWhiteBishop());
+		rowList.add(Piece.createWhiteKnight());
+		rowList.add(Piece.createWhiteRook());
 	}
 
 	/**

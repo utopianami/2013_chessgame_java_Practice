@@ -3,7 +3,6 @@ package chessgame;
 
 import junit.framework.TestCase;
 import util.StringUtil;
-import static util.StringUtil.NEWLINE;
 
 public class RowTest extends TestCase {
 	Board youngnamBoard;

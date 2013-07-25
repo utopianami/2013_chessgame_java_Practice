@@ -2,6 +2,8 @@ package chessgame;
 
 import static util.StringUtil.NEWLINE;
 import pieces.*;
+import pieces.Piece.Color;
+import pieces.Piece.Type;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,8 @@ public class Board {
 	
 	//생성자 
 	public Board(){
+		
+		Piece.resetCount(); //숫자 초기화 
 		
 		for (int row = 0; row < ROW_LENGTH; row++){
 			
@@ -75,53 +79,9 @@ public class Board {
 	 * @param col 찾고자 하는 곳의 열 
 	 * @return 찾은 좌표값(행, 열)의 SYMBOL
 	 */
-	public char getMapInfo(int row, int col) {
-		return chessBoard.get(row).getList().get(col).getName();
+	public Object getMapInfo(int row, int col) {
+		return chessBoard.get(row).getList().get(col).getSymbol();
 	}
-
-
-	/**
-	 * 보드판 위에 있는 숫자 확인
-	 * @return count
-	 */
-	public int piecesCount() {
-		int totalCount = 0;
-		for (Row row : chessBoard) {
-			totalCount = totalCount +piecesCountRow(row);
-			}
-		return totalCount;
-	}
-	
-	
-	/**
-	 * 라인위에 있는 숫자 확인 
-	 * @param 확인 하고자 하는 row
-	 * @return count
-	 */
-	private int piecesCountRow(Row row){
-		int rowCount = 0;
-		for (Piece piece : row.getList()) {
-			if (isNotEmpty(piece)){
-				rowCount++;
-			}
-		}
-		return rowCount;
-	}
-	
-	/**
-	 * piecesCountRow에서 if문 확인 메소드 
-	 * @param piece
-	 * @return true or false
-	 */
-	private boolean isNotEmpty(Piece piece){
-		if(piece.getName() != Piece.EMPTY){
-			return true;
-		}
-		else;
-			return false;
-	}
-	
-
 
 
 	
@@ -134,7 +94,7 @@ public class Board {
 		StringBuilder Line = new StringBuilder();
 		
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
-			Line.append(row.getList().get(column).getName());			
+			Line.append(row.getList().get(column).getSymbol());			
 		}
 		return Line.toString();
 	}
@@ -154,8 +114,15 @@ public class Board {
 		}
 		return boardPrint.toString();
 	}
-
-
+	
+	
+	/**
+	 * 보드판 위의 숫자 확인 
+	 * @return 검은 말 + 흰색 말 
+	 */
+	public int pieceCount(){
+		return Piece.getCount();
+	}
 	
 }
 

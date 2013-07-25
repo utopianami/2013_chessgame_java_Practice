@@ -1,5 +1,7 @@
 package pieces;
 
+import chessgame.Board;
+
 
 /**
  * 체스말 Pawn Class
@@ -9,69 +11,144 @@ package pieces;
 
 
 public class Piece {
+	
+	private static int whiteCount;
+	private static int blackCount;
+	
+	
 
-	//static 
-	public static final String BLACK_PLAYER = "black";//상수 값 black
-	public static final String WHITE_PLAYER = "white";//상수 값 white
-	public static final String EMPTY_PLAYER = "EMPTY";//상수 값 white
+	public enum Color {
+		BLACK, WHITE, NONE
+	}
 	
-	public static final char EMPTY = '.';
-	public static final char PAWN = 'p';
-	public static final char KNIGHT= 'n';
-	public static final char ROOK = 'r';
-	public static final char BISHOP = 'b';
-	public static final char QUEEN = 'q';
-	public static final char KING = 'k';
-	
-	//local variable
-	private String color;
-	private char name;
+	public enum Type{
+		PAWN('p'), KNIGHT('n'), ROOK('r'), BISHOP('b'), QUEEN('q'), KING('k'), Empty('.');
+		
+		private char symbol;
+		private Type(char symbol){
+			this.symbol = symbol;
+		}
+		
+		public char getSymbol(){
+			return this.symbol;
+		}
+	}
+
+	private Color color;
+	private Type type;
+	private char symbol;
 	
 	/**
 	 * private
 	 * 생성자 
-	 * @param 색상여부, 화면출력 대소문자 
+	 * @param 색상여부, Type 
 	 */
-	private Piece(char name, String color) {
-		this.name = name;
+	private Piece(Color color, Type type) {
 		this.color = color;
+		this.type = type;
+		this.symbol = type.getSymbol();
 
-		if (color == BLACK_PLAYER) {
-			this.name = Character.toUpperCase(name);
-		}
-		else if (color == WHITE_PLAYER) {
-			this.name = name;
-		} 
+		
+		if (color == Color.BLACK) {
+			this.symbol = Character.toUpperCase(symbol);
+			}
 	}
 	
-	/**
-	 * 접근 가능 생성자 
-	 * @param name : 이름(말의 종류)
-	 * @param color : 말의 색깔 (흑백 여)
-	 * @return 
-	 * @return 생성자 전달 
-	 */
-	public static Piece create(char name, String color){
-		return new Piece(name, color);
-		
+	
+	
+	private static Piece createWhite(Type type) {
+		whiteCount++;
+		return new Piece(Color.WHITE, type);
 	}
+	
+
+	private static Piece createBlack(Type type) {
+		blackCount++;
+		return new Piece(Color.BLACK, type);
+	}
+
+	public static Piece createEmpty(){
+		return new Piece(Color.NONE, Type.Empty);
+	}
+
+		
+	public static Piece createWhitePawn(){
+		return createWhite(Type.PAWN);
+	}
+
+	public static Piece createBlackPawn(){
+		return createBlack(Type.PAWN);
+	}
+	
+	public static Piece createWhiteRook(){
+		return createWhite(Type.ROOK);
+	}
+	
+	public static Piece createBlackRook(){
+		return createBlack(Type.ROOK);
+	}
+	
+	public static Piece createWhiteKnight(){
+		return createWhite(Type.KNIGHT);
+	}
+	
+	public static Piece createBlackKnight(){
+		return createBlack(Type.KNIGHT);
+	}
+	
+	public static Piece createWhiteBishop(){
+		return createWhite(Type.BISHOP);
+	}
+	
+	public static Piece createBlackBishop(){
+		return createBlack(Type.BISHOP);
+	}
+
+	public static Piece createWhiteQueen(){
+		return createBlack(Type.QUEEN);
+	}
+	
+	public static Piece createBlackQueen(){
+		return createBlack(Type.QUEEN);
+	}
+	
+	public static Piece createWhiteKing(){
+		return createBlack(Type.KING);
+	}
+	public static Piece createBlackKing(){
+		return createBlack(Type.KING);
+	}
+	
+
+
+
+	
 
 
 	/**
 	 * 클래스의 색상확인 메소드 
 	 * @return 블랙, 화이트 
 	 */
-	public String getColor() {
+	public Color getColor() {
 		return this.color;
 	}
 
 	
 	/**
-	 * 말에 따라서 출력되는 name을 확인하는 메소드 
-	 * @return this.name(대문자 혹은 소문자)
+	 * type 확인 
+	 * @return type
 	 */
-	public char getName() {
-		return this.name;
+	public Type getType() {
+		return this.type;
+	}
+	
+
+	/**
+	 * 말에 따라서 출력되는 name을 확인하는 메소드 
+	 * @return this.symbol(대문자 혹은 소문자)
+	 */
+	public Object getSymbol() {
+		return this.symbol;
 	}
 
 	/**
@@ -79,7 +156,7 @@ public class Piece {
 	 * @return true or false
 	 */
 	public boolean isWhite() {
-		if (color == WHITE_PLAYER){
+		if (this.color == Color.WHITE){
 			return true;
 		}
 		return false;
@@ -91,7 +168,7 @@ public class Piece {
 	 * @return true or false
 	 */
 	public boolean isBlack() {
-		if (color == WHITE_PLAYER){
+		if (this.color == Color.BLACK){
 			return true;
 		}
 		return false;
@@ -102,7 +179,7 @@ public class Piece {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + name;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -120,10 +197,24 @@ public class Piece {
 				return false;
 		} else if (!color.equals(other.color))
 			return false;
-		if (name != other.name)
+		if (type != other.type)
 			return false;
 		return true;
 	}
+
+
+
+	public static int getCount() {
+		return Piece.blackCount + whiteCount;
+	}
+	
+	public static void resetCount() {
+		Piece.blackCount = 0 ; 
+		Piece.whiteCount = 0 ;
+	}
+	
+	
+
 
 	
 }
