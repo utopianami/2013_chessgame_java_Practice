@@ -1,6 +1,5 @@
 package pieces;
 
-import chessgame.Board;
 
 
 /**
@@ -49,8 +48,8 @@ public class Piece {
 		this.symbol = type.getSymbol();
 
 		
-		if (color == Color.BLACK) {
-			this.symbol = Character.toUpperCase(symbol);
+		if (isBlack()) {
+			this.symbol = (Character.toUpperCase(this.symbol));
 			}
 	}
 	
@@ -105,7 +104,7 @@ public class Piece {
 	}
 
 	public static Piece createWhiteQueen(){
-		return createBlack(Type.QUEEN);
+		return createWhite(Type.QUEEN);
 	}
 	
 	public static Piece createBlackQueen(){
@@ -113,16 +112,13 @@ public class Piece {
 	}
 	
 	public static Piece createWhiteKing(){
-		return createBlack(Type.KING);
+		return createWhite(Type.KING);
 	}
 	public static Piece createBlackKing(){
 		return createBlack(Type.KING);
 	}
 	
 
-
-
-	
 
 
 	/**
@@ -141,16 +137,17 @@ public class Piece {
 	public Type getType() {
 		return this.type;
 	}
-	
+
 
 	/**
-	 * 말에 따라서 출력되는 name을 확인하는 메소드 
-	 * @return this.symbol(대문자 혹은 소문자)
+	 * 심볼 확인 
+	 * @return symbol
 	 */
-	public Object getSymbol() {
+	public char getSymbol() {
 		return this.symbol;
 	}
 
+	
 	/**
 	 * 흰색말인 확인 
 	 * @return true or false
@@ -212,8 +209,8 @@ public class Piece {
 		Piece.blackCount = 0 ; 
 		Piece.whiteCount = 0 ;
 	}
-	
-	
+
+
 
 
 	

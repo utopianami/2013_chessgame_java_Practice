@@ -15,7 +15,10 @@ public class PieceTest extends TestCase {
 		assertEquals(Piece.Color.BLACK, Piece.createBlackPawn().getColor());
 		
 		//생성 후 심볼 확인(체스판에 출력될 값)
-		assertEquals('P', Piece.createBlackPawn().getSymbol()); //검은색 말 확인 : 대문자 'P' 
+		assertEquals('R', Piece.createBlackRook().getSymbol()); // 
+
+		//생성 후 심볼 확인(체스판에 출력될 값)
+		assertEquals('r', Piece.createWhiteRook().getSymbol()); // 
 	}
 	
 	

@@ -1,8 +1,12 @@
 package chessgame;
 
+
+
+import pieces.Piece.Color;
+import pieces.Piece.Type;
+import util.StringUtil;
 import junit.framework.TestCase;
-import static pieces.Piece.Color.*;
-import static pieces.Piece.Type.*;
+
 
 public class BoardTest extends TestCase {
 	
@@ -34,6 +38,29 @@ public class BoardTest extends TestCase {
 		Board testBoard = new Board();
 		System.out.println(testBoard.pieceCount());
 		assertEquals(32, testBoard.pieceCount());
+	}
+	
+	//색과 말의 종류 숫자 확인 메소드 
+	public void testCountByTypeColor() throws Exception {
+		int actual = board.countByTypeColor(Color.BLACK, Type.ROOK);
+		System.out.println(board.countByTypeColor(Color.BLACK, Type.KING));
+		assertEquals(2, actual);
+	}
+	
+	//보드판 모습 확인 
+	public void testBoardPrint() throws Exception {		
+		System.out.println("boardPrint 메소드 테스트 결과");		
+		System.out.println(new Board().boardPrint());		
+		System.out.println("boardPrint 메소드 테스트 결과완료 ");
+		String blankRank = StringUtil.appendNewLine("........");
+			
+		assertEquals(
+		StringUtil.appendNewLine("RNBQKBNR") +
+		StringUtil.appendNewLine("PPPPPPPP") +
+		blankRank + blankRank +blankRank +blankRank +
+		StringUtil.appendNewLine("pppppppp") +
+		StringUtil.appendNewLine("rnbqkbnr"), new Board().boardPrint());
+	
 	}
 
 }

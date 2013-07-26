@@ -1,6 +1,8 @@
 package chessgame;
 
 import pieces.*;
+import pieces.Piece.Color;
+import pieces.Piece.Type;
 import static pieces.Piece.Color.*;
 
 import java.util.ArrayList;
@@ -78,5 +80,38 @@ public class Row {
 	 */
 	public ArrayList<Piece> getList() {
 		return rowList;
+	}
+
+	
+	/**
+	 * board 클래스에서 색과 말의 종류로 갯수 확인하는 메소드를 돕는 메소드 
+	 * @param color 찾고자 하는 색 
+	 * @param type 찾고자 하는 말의 종류 
+	 * @return row에서 같은 수 
+	 */
+	public int countByTypeColor(Color color, Type type) {
+		int count =0;
+		for (Piece piece : rowList) {
+			if (this.isColorTypeSame(piece, color, type)){
+				count++;
+			}
+			else;
+		}
+		return count;
+	}
+
+	/**
+	 * countByTypeColor 메소드를 돕는 메소드 
+	 * @param color
+	 * @param type
+	 * @return True or False 
+	 */
+	private boolean isColorTypeSame(Piece piece, Color color, Type type) {
+		if (piece.getType() == type && piece.getColor() == color){
+			return true;
+		}
+		else{
+			return false;			
+		}
 	}
 }

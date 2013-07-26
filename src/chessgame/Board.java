@@ -104,11 +104,11 @@ public class Board {
 	 * @param 프린트 하고 싶은 보드 
 	 * @return 보드 전체 
 	 */
-	public String boardPrint(ArrayList<Row> board) {
+	public String boardPrint() {
 		StringBuilder boardPrint = new StringBuilder();
 		
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
-			String line = linePrint(board.get(column));  //linePrint함수 호출
+			String line = linePrint(chessBoard.get(column));  //linePrint함수 호출
 			boardPrint.append(line); // 추가
 			boardPrint.append(NEWLINE);
 		}
@@ -123,6 +123,20 @@ public class Board {
 	public int pieceCount(){
 		return Piece.getCount();
 	}
-	
+
+
+	/**
+	 * 색과 말의 종류를 받아서 보드판 위에 숫자 확인 
+	 * @return count
+	 */
+	public int countByTypeColor(Color color, Type type) {
+		int count = 0;
+		for (Row boardRow : chessBoard){
+			count += boardRow.countByTypeColor(color, type);
+		}
+
+		return count;
+	}
+		
 }
 
