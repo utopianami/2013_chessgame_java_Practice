@@ -79,11 +79,11 @@ public class Board {
 	 * @param 찾고하는 위치  
 	 * @return 찾은 좌표값(행, 열)의 SYMBOL
 	 */
-	public char getMapInfo(String xAndY) {
+	public Piece getMapInfo(String xAndY) {
 		Position position = new Position();
 		position.transfer(xAndY);
 		
-		return chessBoard.get(position.x).getColumn(position.y).getSymbol();
+		return chessBoard.get(position.x).getColumn(position.y);
 	}
 
 
@@ -139,6 +139,23 @@ public class Board {
 		}
 
 		return count;
+	}
+
+	/**
+	 * 원하는 위치에 원하는 말 삽입 
+	 * @param string : 좌표 
+	 * @param type : 삽입하고자 하는 말
+	 * getMapInfo메소드 활용   
+	 */
+
+	public void changePiece(String xAndY, Type type, Color color) {
+		Piece beforePiece = this.getMapInfo(xAndY);
+
+		Position position = new Position();
+		position.transfer(xAndY);
+		
+		chessBoard.get(position.x).setColumn(position.y, type, color);
+		
 	}
 		
 }

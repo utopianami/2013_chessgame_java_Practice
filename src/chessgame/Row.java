@@ -115,7 +115,31 @@ public class Row {
 		}
 	}
 
+
+	/**
+	 * 정해진 위치의 Piece를 바꾸는 것
+	 * @param col 정해진 위치 
+	 * @param type 바꾸고자 하는 말의 종류 
+	 * @param color 말의 색 
+	 */
+
+	public void setColumn(int col, Type type, Color color) {
+		if (color == Color.BLACK){
+			rowList.set(col, Piece.createBlack(type));			
+		}
+		
+		else if (color == Color.WHITE){
+			rowList.set(col, Piece.createWhite(type));			
+		}
+		
+		else{
+			rowList.set(col, Piece.createEmpty());						
+		}
+		
+	}
+
 	public Piece getColumn(int col) {
 		return rowList.get(col);
 	}
+
 }

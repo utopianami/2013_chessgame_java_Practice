@@ -28,8 +28,8 @@ public class BoardTest extends TestCase {
 	public void testGetState() throws Exception {
 		
 		//0행, 1열 위치 확인 
-		assertEquals('R', board.getMapInfo("a1"));
-		assertEquals('P', board.getMapInfo("b2"));
+		assertEquals('R', board.getMapInfo("a1").getSymbol());
+		assertEquals('P', board.getMapInfo("b2").getSymbol());
 		
 	}
 	
@@ -61,6 +61,14 @@ public class BoardTest extends TestCase {
 		StringUtil.appendNewLine("pppppppp") +
 		StringUtil.appendNewLine("rnbqkbnr"), new Board().boardPrint());
 	
+	}
+	
+	//원하는 위치에 원하는 말을 추가 
+	public void testChangePiece() throws Exception {
+		assertEquals('P', board.getMapInfo("b1").getSymbol());
+		board.changePiece("b1", Type.PAWN, Color.WHITE);
+		assertEquals('p', board.getMapInfo("b1").getSymbol());
+		
 	}
 
 }

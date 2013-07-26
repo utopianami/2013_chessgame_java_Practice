@@ -55,13 +55,13 @@ public class Piece {
 	
 	
 	
-	private static Piece createWhite(Type type) {
+	public static Piece createWhite(Type type) {
 		whiteCount++;
 		return new Piece(Color.WHITE, type);
 	}
 	
 
-	private static Piece createBlack(Type type) {
+	public static Piece createBlack(Type type) {
 		blackCount++;
 		return new Piece(Color.BLACK, type);
 	}
