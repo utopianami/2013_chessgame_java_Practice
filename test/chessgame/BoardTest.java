@@ -28,8 +28,8 @@ public class BoardTest extends TestCase {
 	public void testGetState() throws Exception {
 		
 		//0행, 1열 위치 확인 
-		assertEquals('N', board.getMapInfo(0,1));
-		assertEquals('B', board.getMapInfo(0,2));
+		assertEquals('R', board.getMapInfo("a1"));
+		assertEquals('P', board.getMapInfo("b2"));
 		
 	}
 	

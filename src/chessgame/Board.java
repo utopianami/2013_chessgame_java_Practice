@@ -75,12 +75,15 @@ public class Board {
 
 	/**
 	 * 체스판의 좌표에 있는 SYMBOL(체스말) 확
-	 * @param row 찾고자 하는 곳의 행 
-	 * @param col 찾고자 하는 곳의 열 
+	 * Position 클래스의 transfer()메소드를 통해서 x,y좌표를 받
+	 * @param 찾고하는 위치  
 	 * @return 찾은 좌표값(행, 열)의 SYMBOL
 	 */
-	public Object getMapInfo(int row, int col) {
-		return chessBoard.get(row).getList().get(col).getSymbol();
+	public char getMapInfo(String xAndY) {
+		Position position = new Position();
+		position.transfer(xAndY);
+		
+		return chessBoard.get(position.x).getColumn(position.y).getSymbol();
 	}
 
 

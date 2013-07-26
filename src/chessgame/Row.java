@@ -114,4 +114,8 @@ public class Row {
 			return false;			
 		}
 	}
+
+	public Piece getColumn(int col) {
+		return rowList.get(col);
+	}
 }
