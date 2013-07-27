@@ -199,5 +199,24 @@ public class Row {
 	private boolean isContain(HashMap<Integer, Integer> pawnPosition, int column) {
 		return pawnPosition.containsKey(column);
 	}
+	
+	
+	/**
+	 * 보드판에서 색깔에 맞는 말들은 모두 취합 
+	 * @param color 찾고자 하는 색 
+	 * @param nowPieceList 추가하는 리스트 
+	 * @return 추가한 후 리스트 반환 
+	 */
+	public ArrayList<Piece> addPiece(Color color, ArrayList<Piece> nowPieceList) {
+		for (Piece piece : rowList) {
+			if (piece.isColor(color)) {
+				nowPieceList.add(piece);
+			}
+		}
+		return nowPieceList;
+		
+	}
+	
+	
 
 }

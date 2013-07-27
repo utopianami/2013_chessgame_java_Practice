@@ -1,7 +1,6 @@
 package pieces;
 
 
-
 /**
  * 체스말 Pawn Class
  * @author YoungNamLee
@@ -9,7 +8,7 @@ package pieces;
  */
 
 
-public class Piece {
+public class Piece  {
 	
 	public static int whiteCount;
 	public static int blackCount;
@@ -222,9 +221,37 @@ public class Piece {
 		return true;
 	}
 	
+	
+	/**
+	 * resetCount
+	 * testCode 실행을 위한 메소드 
+	 * blackCount, whiteCount, blackPoint, whitePoint 초기화 
+	 */
 	public static void resetCount() {
 		Piece.blackCount = 0 ; 
 		Piece.whiteCount = 0 ;
+		Piece.blackPoint = 0;
+		Piece.whitePoint = 0;
+	}
+
+
+	/**
+	 * color확인 메소드 
+	 * @param color 확인하고자 하는 color 
+	 * @return true or false
+	 */
+	public boolean isColor(Color color) {
+		if (color.equals(this.getColor())){
+			return true;
+		}
+		else;
+		return false;
+	}
+
+
+
+	public int compare(Piece target) {
+		return (int) (this.getPoint() - target.getPoint());
 	}
 	
 }

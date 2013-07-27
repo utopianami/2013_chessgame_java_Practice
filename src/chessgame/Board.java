@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+
 /**
  * 체스판 
  * @author YoungNamLee
@@ -22,6 +23,8 @@ public class Board {
 	
 	public static final int ROW_LENGTH = 8;//행의 길이는 8
 	public static final int COLUM_LENGTH = 8;//열의 길이는 8
+	
+	ArrayList<Piece> nowPieceList = new ArrayList<Piece>();
 	
 	//체스판에 쓰일 2차원 배열 chessBoard 선언
 	//<Row> Row class의 배열, Row 클래스는 또 다른 배열(체스판의 행)
@@ -250,6 +253,124 @@ public class Board {
 			Piece.blackPoint -= type.getPoint();			
 		}
 	}
+
+
+	/**
+	 * 현재 존재하는 말의 리스트 정렬 
+	 * @param color 정렬하고자 하는 색 
+	 * @return 정렬된 리스트 
+	 * getNowPiece메소드 활용 
+	 */
+	public void sortByPoint(Color color) {
+
+		
+		//체스판 위에 있는 말의 리스트 만들기
+		nowPieceList = this.getNowPiece(color);
+		
+		//정렬 
+		for (int index = 0; index < nowPieceList.size()-1 ; index++) {
+			Piece origin = nowPieceList.get(index);
+			Piece target = nowPieceList.get(index+1);
+			int result = origin.compare(target);
+			
+			if (isNotSort(result)){
+				nowPieceList.set(index+1, origin);
+				nowPieceList.set(index, target);
+				
+				this.continueCompare(index);				
+			}		
+		}
+	}
+
+
+	/**
+	 * SortByPoint 메소드에 활용, 앞에 값보다 클때까지 비교 
+	 * @param index
+	 * @return 
+	 */
+	private void continueCompare(int index) {
+		while(true){
+			//앞의 index와 비교하기 위해서 
+			int nextOrigin = 1;
+			int nextTarget = 0;
+			
+			//종료조건 1 : 제일 앞자리까지 비교 후 
+			if (isFirstIndex(index, nextOrigin)){
+				break;
+			}
+			
+			Piece origin = nowPieceList.get(index-nextOrigin); //4
+			Piece target = nowPieceList.get(index-nextTarget); //5
+			int result = origin.compare(target);
+			
+			//종료조건 2 : 정렬되어 있다면 break
+			if (isSort(result)){
+				break;
+			}
+			
+			//값 교환 
+			nowPieceList.set(index+1, origin);
+			nowPieceList.set(index, target);
+			
+			nextOrigin++; //앞의 index와 비교 시작 
+			nextTarget++; //앞의 index와 비교 시작 
+			
+
+		}
+
+		
+	}
+
+
+	/**
+	 * continueCompare을 돕는 메소드 
+	 * 제일 앞짜리까지 왔는지 확인  
+	 * @param index
+	 * @param nextOrigin
+	 * @return true, false
+	 */
+	private boolean isFirstIndex(int index, int nextOrigin) {
+		return (index-nextOrigin) <= 0;
+	}
+
+
+
+	/**
+	 * SortByPoint 메소드에 활용, 비교하는 두 대상의 값이 정렬이 되어 있는를 물어봄 
+	 * @param result
+	 * @return false, true
+	 */
+	private boolean isSort(int result) {
+		return result > 0;
+	}
+
+
+	/**
+	 * SortByPoint 메소드에 활용, 비교하는 두 대상의 값이 정렬이 되지 않았는가를 물어봄 
+	 * @param result
+	 * @return false, true
+	 */
+	private boolean isNotSort(int result) {
+		return result < 0;
+	}
+
+	
+	/**
+	 * 현재 존재하는 말을 리스트로 만들기 
+	 * @param color리스트로 만들고자 하는 색 
+	 * @return 
+	 */
+	private ArrayList<Piece> getNowPiece(Color color) {
+		ArrayList<Piece> nowPieceList = new ArrayList<Piece>();
+
+		
+		for (Row row : chessBoard) {
+			nowPieceList = row.addPiece(color, nowPieceList);
+		}
+		
+		return nowPieceList;
+	}
+	
 		
 }
 
