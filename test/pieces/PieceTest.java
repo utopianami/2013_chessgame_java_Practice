@@ -30,4 +30,9 @@ public class PieceTest extends TestCase {
 		boolean actual1 = Piece.createWhiteBishop().isBlack();
 		assertFalse(actual1);
 	}
+	
+	public void testPoint() throws Exception {
+		assertEquals(3.0, Piece.createBlackBishop().getPoint());
+		
+	}
 }

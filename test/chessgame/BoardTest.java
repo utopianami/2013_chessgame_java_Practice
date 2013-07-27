@@ -2,12 +2,17 @@ package chessgame;
 
 
 
+
+import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
 import util.StringUtil;
 import junit.framework.TestCase;
+import static pieces.Piece.Color.*;
+import static pieces.Piece.Type.*;
 
 
+ 
 public class BoardTest extends TestCase {
 	
 	private Board board;
@@ -16,7 +21,7 @@ public class BoardTest extends TestCase {
 		board = new Board();
 	}
 	
-	
+
 	//Board 생성 확인 
 	public void testInit() throws Exception {
 		
@@ -42,8 +47,8 @@ public class BoardTest extends TestCase {
 	
 	//색과 말의 종류 숫자 확인 메소드 
 	public void testCountByTypeColor() throws Exception {
-		int actual = board.countByTypeColor(Color.BLACK, Type.ROOK);
-		System.out.println(board.countByTypeColor(Color.BLACK, Type.KING));
+		int actual = board.countByTypeColor(BLACK, ROOK);
+		System.out.println(board.countByTypeColor(BLACK, KING));
 		assertEquals(2, actual);
 	}
 	
@@ -66,9 +71,19 @@ public class BoardTest extends TestCase {
 	//원하는 위치에 원하는 말을 추가 
 	public void testChangePiece() throws Exception {
 		assertEquals('P', board.getMapInfo("b1").getSymbol());
-		board.changePiece("b1", Type.PAWN, Color.WHITE);
+		board.changePiece("b1", PAWN, WHITE);
 		assertEquals('p', board.getMapInfo("b1").getSymbol());
 		
 	}
+	
+	//원하는 위치의 말을 원하는 위치로 이동 
+	public void testMovePiece() throws Exception {
+		System.out.println(board.getMapInfo("b2").getSymbol());
+		System.out.println(board.getMapInfo("a3").getSymbol());
+		board.movePiece("b2", "a3");
+		System.out.println(board.getMapInfo("b2").getSymbol());
+		System.out.println(board.getMapInfo("a3").getSymbol());
+	}
 
+	
 }

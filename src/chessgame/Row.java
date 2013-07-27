@@ -4,8 +4,10 @@ import pieces.*;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
 import static pieces.Piece.Color.*;
+import static pieces.Piece.Type.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Row {
@@ -124,11 +126,11 @@ public class Row {
 	 */
 
 	public void setColumn(int col, Type type, Color color) {
-		if (color == Color.BLACK){
+		if (color == BLACK){
 			rowList.set(col, Piece.createBlack(type));			
 		}
 		
-		else if (color == Color.WHITE){
+		else if (color == WHITE){
 			rowList.set(col, Piece.createWhite(type));			
 		}
 		
@@ -140,6 +142,62 @@ public class Row {
 
 	public Piece getColumn(int col) {
 		return rowList.get(col);
+	}
+
+	/**
+	 * board 클래스의 checkPawn메소드에서 pawn의 열 위치와 갯수 확인을 돕는 메소드 
+	 * @param color 
+	 * @param pawnPosition 
+	 * @return pawn의 열의 위치와 숫자 리턴 
+	 */
+	public HashMap<Integer, Integer> findPawnPosition(Color color, HashMap<Integer, Integer> pawnPosition) {
+		int column = 0;//열의 위치를 파악하기 위해서 
+		
+		//System.out.println(rowList.get(0).getSymbol());
+		//System.out.println(pawnPosition);
+		for (Piece piece : rowList) {
+			if (ispawn(color, piece)){
+				if(isContain(pawnPosition, column)){
+			//		System.out.println("--시--");
+			//		System.out.println("열 "+ column);
+					int newVal = pawnPosition.get(column)+1; // value에 +1
+			//		System.out.println("변경된 키값 " +newVal);
+			//		System.out.println("---끝--");
+					pawnPosition.remove(column); //기존 value값을 삭제 
+					pawnPosition.put(column, newVal); //새로운 value 값을 저장  
+				}
+				else{
+					pawnPosition.put(column, 1); //열이 없을 경우 key 생성 후 1 추가 
+			}
+			
+			}
+			column++; //다음 열 
+		}
+		return pawnPosition;
+	}
+
+	
+	/**
+	 * row클래스 checkPawn 메소드에서 if 조건에 대한 메소드 
+	 * pawn 클래스인지, 같은 색인지를 물어보는 메소드 
+	 * @param color, piece
+	 * @return true, false
+	 */
+	private boolean ispawn(Color color, Piece piece) {
+		return piece.getType().equals(PAWN) && piece.getColor().equals(color);
+	}
+
+
+	
+	/**
+	 * row클래스 checkPawn 메소드에서 if 조건에 대한 메소드 
+	 * 열의 위치가 같은지를 물어보는 메소드 
+	 * @param pawnPosition
+	 * @param column
+	 * @return true, false
+	 */
+	private boolean isContain(HashMap<Integer, Integer> pawnPosition, int column) {
+		return pawnPosition.containsKey(column);
 	}
 
 }

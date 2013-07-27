@@ -11,8 +11,11 @@ package pieces;
 
 public class Piece {
 	
-	private static int whiteCount;
-	private static int blackCount;
+	public static int whiteCount;
+	public static int blackCount;
+	
+	public static double whitePoint;
+	public static double blackPoint;
 	
 	
 
@@ -21,21 +24,28 @@ public class Piece {
 	}
 	
 	public enum Type{
-		PAWN('p'), KNIGHT('n'), ROOK('r'), BISHOP('b'), QUEEN('q'), KING('k'), Empty('.');
+		PAWN('p', 1.0), KNIGHT('n', 2.5), ROOK('r', 5.0), BISHOP('b', 3.0), QUEEN('q', 9.0), KING('k', 0.0), Empty('.', 0.0);
 		
 		private char symbol;
-		private Type(char symbol){
+		private double point;
+		//enum 생성자 
+		private Type(char symbol, double point){
 			this.symbol = symbol;
+			this.point = point;
 		}
 		
 		public char getSymbol(){
 			return this.symbol;
+		}
+		public double getPoint(){
+			return this.point;
 		}
 	}
 
 	private Color color;
 	private Type type;
 	private char symbol;
+	private double point;
 	
 	/**
 	 * private
@@ -46,6 +56,7 @@ public class Piece {
 		this.color = color;
 		this.type = type;
 		this.symbol = type.getSymbol();
+		this.point = type.getPoint();
 
 		
 		if (isBlack()) {
@@ -57,12 +68,14 @@ public class Piece {
 	
 	public static Piece createWhite(Type type) {
 		whiteCount++;
+		whitePoint += type.getPoint();
 		return new Piece(Color.WHITE, type);
 	}
 	
 
 	public static Piece createBlack(Type type) {
 		blackCount++;
+		blackPoint += type.getPoint();
 		return new Piece(Color.BLACK, type);
 	}
 
@@ -147,6 +160,16 @@ public class Piece {
 		return this.symbol;
 	}
 
+
+	/**
+	 * point 확인 
+	 * @return point 
+	 */
+	public double getPoint() {
+		return this.point;
+	}
+
+
 	
 	/**
 	 * 흰색말인 확인 
@@ -198,20 +221,10 @@ public class Piece {
 			return false;
 		return true;
 	}
-
-
-
-	public static int getCount() {
-		return Piece.blackCount + whiteCount;
-	}
 	
 	public static void resetCount() {
 		Piece.blackCount = 0 ; 
 		Piece.whiteCount = 0 ;
 	}
-
-
-
-
 	
 }
