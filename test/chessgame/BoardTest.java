@@ -82,17 +82,21 @@ public class BoardTest extends TestCase {
 	}
 	
 	//같은 열에 위치한 pawn의 점수 변화 
-	public void testCheckPawn2() throws Exception {
+	public void testCheckPawn() throws Exception {
 		board.checkPoint(BLACK);
 		assertEquals(38.0, Piece.blackPoint);
+		assertEquals(38.0, Piece.whitePoint);
 		
 		//피스 이동 4개의 말이 같은 열에 존재 
 		board.movePiece("b2", "c1");
-		board.movePiece("b3", "c4");
+		board.movePiece("b3", "g4");
 		System.out.println(board.boardPrint()); 
 		
+		board.checkPoint(WHITE);
 		board.checkPoint(BLACK);
+		assertEquals(37.0, Piece.whitePoint);
 		assertEquals(36.0,Piece.blackPoint); 
+		assertEquals(16,Piece.blackCount); 
 	}
 	
 	

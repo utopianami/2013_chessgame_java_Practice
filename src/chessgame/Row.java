@@ -115,11 +115,11 @@ public class Row {
 	 * @param color 말의 색 
 	 */
 	public void setColumn(int col, Type type, Color color) {
-		if (color == BLACK){
+		if (color.equals(BLACK)){
 			rowList.set(col, Piece.createBlack(type));			
 		}
 		
-		else if (color == WHITE){
+		else if (color.equals(WHITE)){
 			rowList.set(col, Piece.createWhite(type));			
 		}
 		
@@ -130,13 +130,13 @@ public class Row {
 
 	/**
 	 * findPawnPosition
-	 * 목적 : 열에서 체스판 위에 있는 pawn을 hashmap으로 표현  
+	 * 목적 : 열에서 체스판 위에 있는 pawn을 hashMap으로 표현  
 	 * 활용 : Board Class_checkPawn() 
 	 * 필요한 메소드 : isPawn()
 	 * 필요한 메소드 : isContain()
 	 * @param color 
 	 * @param pawnPosition 
-	 * @return hashmap : pawn의 열의 위치와 숫자
+	 * @return hashMap : pawn의 열의 위치와 숫자
 	 */
 	public HashMap<Integer, Integer> findPawnPosition(Color color, HashMap<Integer, Integer> pawnPosition) {
 		int column = 0;//열의 위치를 파악하기 위해서 

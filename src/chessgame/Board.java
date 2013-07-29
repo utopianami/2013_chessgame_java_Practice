@@ -184,9 +184,9 @@ public class Board {
 	 * changePiece 
 	 * 목적 : 원하는 위치에 원하는 말 삽입
 	 * 필요한 메소드 : Board Class_getMapInfo() 좌표의 말 확인 
-	 * 필요한 메소드 : Board Class_isNotEmpty() 삽입하는 곳이 비어있는지 확인  
 	 * 필요한 메소드 : Row Class_setColmun() row에 접근해서 해당하는 열의 값을 변경   
 	 * 필요한 메소드 : Position Class_transfer() 매개변수의 String을 좌표값으로 변경   
+	 * 필요한 메소드 : Piece Class_isEmpty() 삽입하는 곳이 비어있는지 확인  
 	 * 필요한 메소드 : Piece Class_changeInfo() 추가/삭제에 따른 숫자/포인트 내용 변경 
 	 * @param string : 삽입하고자 하는 좌표 
 	 * @param type : 삽입하고자 하는 말
@@ -197,27 +197,13 @@ public class Board {
 		position.transfer(xAndY); //매개변수 xAndY를 좌표값으로 변경 
 				 
 		Piece beforePiece = this.getMapInfo(xAndY);//바꾸고자 하는 위치에 존재하는 이전 말을 저장
-		
 		chessBoard.get(position.x).setColumn(position.y, type, color); //위치에 삽입 
 		
-		
 		//변경하기전 위치의 piece가 빈공간이 아니라면 카운트와 포인트 변경
-		if (isNotEmpty(beforePiece)){
-			beforePiece.changeInfo("minus");
+		if (beforePiece.isEmpty()==false){
+			beforePiece.changeInfo();
 			}
 	}
-
-	/**
-	 * isNoyEmpty
-	 * 목적 : 말이 비어있는지 아닌지 확인
-	 * 활용 : changePiece()메소드에서 활용 
-	 * @param beforePiece
-	 * @return true, false
-	 */
-	private boolean isNotEmpty(Piece beforePiece) {
-		return beforePiece.getType() != Empty;
-	}
-
 
 	/**
 	 * movePiece
@@ -235,9 +221,6 @@ public class Board {
 		
 		changePiece(toXAndY, type, color); // 말을 옮김 
 		changePiece(fromXAndY, Empty, NONE);// 옮기고 난 후 그 위치는 empty초기화
-		piece.changeInfo("plus"); 
-		/* 옮기고 난 후 empty로 초기화 할때 이전 말이 empty가 아니므로 
-		point와 count를 마이너스가 됨. 그러므로 다시 플러스 해야줘야 함 */
 	}
 	
 

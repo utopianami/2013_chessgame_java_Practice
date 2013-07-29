@@ -250,8 +250,7 @@ public class Piece  {
 	 * 활용 : Board Class_changePiece() 추가/삭제될때 호출 
 	 * @param  
 	 */
-	public void changeInfo(String which) {
-		if (which =="minus"){
+	public void changeInfo() {
 			if (this.isWhite()) {
 				Piece.whiteCount --;
 				Piece.whitePoint -= this.getPoint();
@@ -260,17 +259,18 @@ public class Piece  {
 				Piece.blackCount--;
 				Piece.blackPoint -= this.getPoint();			
 			}
-		}
-		else if (which =="plus"){
-			if (this.isWhite()) {
-				Piece.whiteCount --;
-				Piece.whitePoint -= this.getPoint();
-			}
-			else if (this.isBlack()){
-				Piece.blackCount--;
-				Piece.blackPoint -= this.getPoint();			
-			}
-		}
+		
+	}
+
+	/**
+	 * isEmpty
+	 * 목적 : 말이 비어있는지 아닌지 확인
+	 * 활용 : Board Class_changePiece()메소드에서 활용 
+	 * @param beforePiece
+	 * @return true, false
+	 */
+	public boolean isEmpty() {
+		return this.getType().equals((Type.Empty));
 	}
 	
 }
