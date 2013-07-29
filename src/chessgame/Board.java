@@ -186,7 +186,7 @@ public class Board {
 	 * 필요한 메소드 : Board Class_getMapInfo() 좌표의 말 확인 
 	 * 필요한 메소드 : Row Class_setColmun() row에 접근해서 해당하는 열의 값을 변경   
 	 * 필요한 메소드 : Position Class_transfer() 매개변수의 String을 좌표값으로 변경   
-	 * 필요한 메소드 : Piece Class_isEmpty() 삽입하는 곳이 비어있는지 확인  
+	 * 필요한 메소드 : Piece Class_isNotEmpty() 삽입하는 곳이 비어있는지 확인  
 	 * 필요한 메소드 : Piece Class_changeInfo() 추가/삭제에 따른 숫자/포인트 내용 변경 
 	 * @param string : 삽입하고자 하는 좌표 
 	 * @param type : 삽입하고자 하는 말
@@ -200,7 +200,7 @@ public class Board {
 		chessBoard.get(position.x).setColumn(position.y, type, color); //위치에 삽입 
 		
 		//변경하기전 위치의 piece가 빈공간이 아니라면 카운트와 포인트 변경
-		if (beforePiece.isEmpty()==false){
+		if (beforePiece.isNotEmpty()){
 			beforePiece.changeInfo();
 			}
 	}

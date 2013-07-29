@@ -263,13 +263,13 @@ public class Piece  {
 	}
 
 	/**
-	 * isEmpty
+	 * isNotEmpty
 	 * 목적 : 말이 비어있는지 아닌지 확인
 	 * 활용 : Board Class_changePiece()메소드에서 활용 
 	 * @param beforePiece
 	 * @return true, false
 	 */
-	public boolean isEmpty() {
+	public boolean isNotEmpty() {
 		return this.getType().equals((Type.Empty));
 	}
 	
