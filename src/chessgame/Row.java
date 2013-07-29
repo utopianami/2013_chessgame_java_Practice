@@ -11,45 +11,32 @@ import java.util.HashMap;
 
 
 public class Row {
-	
- 
-	private ArrayList<Piece> rowList = new ArrayList<Piece>(); //행의 리스트 : 열값을 저장 
+	//Board Class의 chessBoard 배열의 행 : 열 값을 저장
+	private ArrayList<Piece> rowList = new ArrayList<Piece>();  
 
 	
-	/**
-	 * 체스보드 빈공간 초기화 
-	 * @return 빈공간 초기화를 마친 row(행)
-	 */
+	//빈공간 초기화 
 	public void initEmpty() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
 			rowList.add(Piece.createEmpty());
 		}
 	}
 	
-	/**
-	 * 체스보드 검은말 폰 초기화 
-	 * @return 검은말 초기화를 마친 row(행)
-	 */
+	//검은색 Pawn 초기화 
 	public void initBlackPawn() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
 			rowList.add(Piece.createBlackPawn());
 		}
 	}
-	
-	/**
-	 * 체스보드 흰색말 폰 초기화 
-	 * @return 흰색말 초기화를 마친 row(행) 위치
-	 */
+
+	//흰색 pawn초기화 
 	public void initWhitePawn() {
 		for (int column = 0; column < Board.COLUM_LENGTH; column++) {
 			rowList.add(Piece.createWhitePawn());
 		}
 	}
 	
-	/**
-	 * 체스보드 검은색 말 초기화 (폰을 제외한 나머지)
-	 * @return 검은색 말 초기화를 마친 row(행) 위치
-	 */
+	//검은색 말 초기화 (pawn제외)
 	public void initBlackLine() {
 		rowList.add(Piece.createBlackRook());
 		rowList.add(Piece.createBlackKnight());
@@ -61,10 +48,7 @@ public class Row {
 		rowList.add(Piece.createBlackRook());
 	}
 	
-	/**
-	 * 체스보드 흰색말 초기화 (폰을 제외한 나머지)
-	 * @return 흰색색 말 초기화를 마친 row(행) 위치
-	 */
+	//흰색 말 초기화 (pawn제외)
 	public void initWhiteLine() {
 		rowList.add(Piece.createWhiteRook());
 		rowList.add(Piece.createWhiteKnight());
@@ -77,19 +61,22 @@ public class Row {
 	}
 
 	/**
-	 * 외부에서 rowList에 접근 하는 메소드 
-	 * @return rowList
+	 * getColmun
+	 * 목적 : 원하는 행의 말을 확인 
+	 * @param col
+	 * @return Piece 
 	 */
-	public ArrayList<Piece> getList() {
-		return rowList;
+	public Piece getColumn(int col) {
+		return rowList.get(col);
 	}
-
 	
 	/**
-	 * board 클래스에서 색과 말의 종류로 갯수 확인하는 메소드를 돕는 메소드 
+	 * countByTyoeColor
+	 * 목적 : 원하는 색과 종류에 해당하는 말의 갯수 확인
+	 * 활용 : Board Class_countByTypeColor()에서 각 행마다 갯수를 확인 
 	 * @param color 찾고자 하는 색 
 	 * @param type 찾고자 하는 말의 종류 
-	 * @return row에서 같은 수 
+	 * @return 숫자 
 	 */
 	public int countByTypeColor(Color color, Type type) {
 		int count =0;
@@ -103,7 +90,9 @@ public class Row {
 	}
 
 	/**
-	 * countByTypeColor 메소드를 돕는 메소드 
+	 * isColorTypeSame
+	 * 목적 : 원하는 색과 종류의 말이 맞는지 확인
+	 * 활용 : Row Class_countByTypeColor() 
 	 * @param color
 	 * @param type
 	 * @return True or False 
@@ -119,7 +108,9 @@ public class Row {
 
 
 	/**
-	 * 정해진 위치의 Piece를 바꾸는 것
+	 * setColumn
+	 * 목적 : 정해진 위치의 Piece를 바꾸는 것
+	 * 활용 : Board Class_changePiece()
 	 * @param col 정해진 위치 
 	 * @param type 바꾸고자 하는 말의 종류 
 	 * @param color 말의 색 
@@ -139,30 +130,27 @@ public class Row {
 		}
 		
 	}
+	
 
-	public Piece getColumn(int col) {
-		return rowList.get(col);
-	}
 
 	/**
-	 * board 클래스의 checkPawn메소드에서 pawn의 열 위치와 갯수 확인을 돕는 메소드 
+	 * findPawnPosition
+	 * 목적 : 열에서 체스판 위에 있는 pawn을 hashmap으로 표현  
+	 * 활용 : Board Class_checkPawn() 
 	 * @param color 
 	 * @param pawnPosition 
-	 * @return pawn의 열의 위치와 숫자 리턴 
+	 * @return hashmap : pawn의 열의 위치와 숫자
 	 */
 	public HashMap<Integer, Integer> findPawnPosition(Color color, HashMap<Integer, Integer> pawnPosition) {
 		int column = 0;//열의 위치를 파악하기 위해서 
 		
-		//System.out.println(rowList.get(0).getSymbol());
-		//System.out.println(pawnPosition);
+
 		for (Piece piece : rowList) {
 			if (ispawn(color, piece)){
 				if(isContain(pawnPosition, column)){
-			//		System.out.println("--시--");
-			//		System.out.println("열 "+ column);
+
 					int newVal = pawnPosition.get(column)+1; // value에 +1
-			//		System.out.println("변경된 키값 " +newVal);
-			//		System.out.println("---끝--");
+
 					pawnPosition.remove(column); //기존 value값을 삭제 
 					pawnPosition.put(column, newVal); //새로운 value 값을 저장  
 				}
@@ -215,6 +203,22 @@ public class Row {
 		}
 		return nowPieceList;
 		
+	}
+	
+	/**
+	 * rowPrint
+	 * 목적 : 해당하는 행을 출력
+	 * 활용 : Board Class_BoardPrint() 
+	 * @return 행에 존재하는 열들의 모음 
+	 */
+	
+	public String rowPrint() {
+		StringBuilder row = new StringBuilder();
+		
+		for (Piece piece : rowList) {
+			row.append(piece.getSymbol());			
+		}
+		return row.toString();
 	}
 	
 	

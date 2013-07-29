@@ -253,5 +253,35 @@ public class Piece  {
 	public double compare(Piece target) {
 		return (this.getPoint() - target.getPoint());
 	}
+
+
+	/**
+	 * changeInfo
+	 * 목적 : 말이 추가되거나 삭제 되었을 때 count와 point변경
+	 * 활용 : Board Class_changePiece() 추가/삭제될때 호출 
+	 * @param  
+	 */
+	public void changeInfo(String which) {
+		if (which =="minus"){
+			if (this.isWhite()) {
+				Piece.whiteCount --;
+				Piece.whitePoint -= this.getPoint();
+			}
+			else if (this.isBlack()){
+				Piece.blackCount--;
+				Piece.blackPoint -= this.getPoint();			
+			}
+		}
+		else if (which =="plus"){
+			if (this.isWhite()) {
+				Piece.whiteCount --;
+				Piece.whitePoint -= this.getPoint();
+			}
+			else if (this.isBlack()){
+				Piece.blackCount--;
+				Piece.blackPoint -= this.getPoint();			
+			}
+		}
+	}
 	
 }

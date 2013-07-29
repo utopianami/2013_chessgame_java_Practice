@@ -92,7 +92,6 @@ public class BoardTest extends TestCase {
 		System.out.println(board.boardPrint()); 
 		
 		board.checkPoint(BLACK);
-		assertEquals(4, board.checkPawn(BLACK)); //0.5점을 줘야 될 말은 총 4개 
 		assertEquals(36.0,Piece.blackPoint); 
 	}
 	

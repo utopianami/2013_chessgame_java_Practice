@@ -5,10 +5,11 @@ import junit.framework.TestCase;
 
 
 public class RowTest extends TestCase {
-	Board youngnamBoard;
+
+	Row row;
 	
 	public void setUp(){
-		youngnamBoard = new Board();
+		row = new Row();
 	}
 
 	
@@ -16,23 +17,9 @@ public class RowTest extends TestCase {
 	public void testInitEmpty() throws Exception {	
 		
 		
-		new Row().initBlackPawn();
-		assertEquals("........", new Board().linePrint(youngnamBoard.chessBoard.get(4)));
+		row.initBlackPawn();
+		assertEquals("PPPPPPPP", row.rowPrint());
 	}
 	
-	//체스판 BALCK_PAWN 초기화 
-	public void testInitBlackPawn() throws Exception {	
-		
-		new Row().initBlackPawn();
-		assertEquals("PPPPPPPP", new Board().linePrint(youngnamBoard.chessBoard.get(1)));
-	}
-	
-	//체스판 WHITE_PAWN 초기
-	public void testInitWhitePawn() throws Exception {	
-		
-		new Row().initWhitePawn();
-		assertEquals("pppppppp", new Board().linePrint(youngnamBoard.chessBoard.get(6)));
-	}
-
 
 }
