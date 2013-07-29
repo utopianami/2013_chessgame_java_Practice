@@ -13,10 +13,8 @@ import java.util.HashMap;
 
 
 /**
- * 체스판 
+ * Board Class
  * @author YoungNamLee
- * 체스판 초기화 + getMapInfo()
- * 특이사항 : 2차원 배열을 만들때 Row Class를 통해서 행 처리 
  */
 
 public class Board {
@@ -24,6 +22,7 @@ public class Board {
 	public static final int ROW_LENGTH = 8;//행의 길이는 8
 	public static final int COLUM_LENGTH = 8;//열의 길이는 8
 	
+	//현재 board 존재하는 말의 리스트 저장 
 	ArrayList<Piece> nowPieceList = new ArrayList<Piece>();
 	
 	//체스판에 쓰일 2차원 배열 chessBoard 선언
@@ -269,9 +268,21 @@ public class Board {
 		
 		//정렬 
 		for (int index = 0; index < nowPieceList.size()-1 ; index++) {
+			System.out.println("---시작 ------");
+			System.out.println(index + "현재 ");
+			System.out.println(nowPieceList.get(index).getType() + "대상");
+			System.out.println(nowPieceList.get(index).getPoint() + "대상");
+			System.out.println(nowPieceList.get(index+1).getType() + "대상");
+			System.out.println(nowPieceList.get(index+1).getPoint() + "대상");
+			for (Piece a : nowPieceList) {
+				System.out.println(a.getSymbol());
+			}
+			System.out.println("----끝 -------");
+			
 			Piece origin = nowPieceList.get(index);
 			Piece target = nowPieceList.get(index+1);
-			int result = origin.compare(target);
+			double result = origin.compare(target);
+			System.out.println(result + "결과값 ");
 			
 			if (isNotSort(result)){
 				nowPieceList.set(index+1, origin);
@@ -289,31 +300,35 @@ public class Board {
 	 * @return 
 	 */
 	private void continueCompare(int index) {
+		int nextOrigin = 1;
+		int nextTarget = 0;
+		
 		while(true){
-			//앞의 index와 비교하기 위해서 
-			int nextOrigin = 1;
-			int nextTarget = 0;
 			
+
 			//종료조건 1 : 제일 앞자리까지 비교 후 
 			if (isFirstIndex(index, nextOrigin)){
 				break;
 			}
-			
-			Piece origin = nowPieceList.get(index-nextOrigin); //4
-			Piece target = nowPieceList.get(index-nextTarget); //5
-			int result = origin.compare(target);
+	
+			Piece origin = nowPieceList.get(index-nextOrigin); 
+			Piece target = nowPieceList.get(index-nextTarget); 
+			double result = origin.compare(target);
 			
 			//종료조건 2 : 정렬되어 있다면 break
 			if (isSort(result)){
 				break;
 			}
+
 			
 			//값 교환 
-			nowPieceList.set(index+1, origin);
-			nowPieceList.set(index, target);
+			nowPieceList.set(index-nextTarget, origin);
+			nowPieceList.set(index-nextOrigin, target);
 			
-			nextOrigin++; //앞의 index와 비교 시작 
-			nextTarget++; //앞의 index와 비교 시작 
+			nextOrigin++; 
+			nextTarget++; 
+			System.out.println(nowPieceList.get(index).getType() + "----루프실행  -------");
+
 			
 
 		}
@@ -330,7 +345,7 @@ public class Board {
 	 * @return true, false
 	 */
 	private boolean isFirstIndex(int index, int nextOrigin) {
-		return (index-nextOrigin) <= 0;
+		return (index-nextOrigin) < 0;
 	}
 
 
@@ -340,8 +355,8 @@ public class Board {
 	 * @param result
 	 * @return false, true
 	 */
-	private boolean isSort(int result) {
-		return result > 0;
+	private boolean isSort(double result) {
+		return result >= 0;
 	}
 
 
@@ -350,7 +365,7 @@ public class Board {
 	 * @param result
 	 * @return false, true
 	 */
-	private boolean isNotSort(int result) {
+	private boolean isNotSort(double result) {
 		return result < 0;
 	}
 

@@ -250,8 +250,8 @@ public class Piece  {
 
 
 
-	public int compare(Piece target) {
-		return (int) (this.getPoint() - target.getPoint());
+	public double compare(Piece target) {
+		return (this.getPoint() - target.getPoint());
 	}
 	
 }

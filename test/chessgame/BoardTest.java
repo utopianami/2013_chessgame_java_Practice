@@ -2,7 +2,6 @@ package chessgame;
 
 
 
-import java.util.ArrayList;
 
 import pieces.Piece;
 import util.StringUtil;
@@ -40,14 +39,12 @@ public class BoardTest extends TestCase {
 	public void testPieceCount() throws Exception {
 		
 		Board testBoard = new Board();
-		System.out.println(testBoard.pieceCount());
 		assertEquals(32, testBoard.pieceCount());
 	}
 	
 	//색과 말의 종류 숫자 확인 메소드 
 	public void testCountByTypeColor() throws Exception {
 		int actual = board.countByTypeColor(BLACK, ROOK);
-		System.out.println(board.countByTypeColor(BLACK, KING));
 		assertEquals(2, actual);
 	}
 	
@@ -99,8 +96,21 @@ public class BoardTest extends TestCase {
 		assertEquals(36.0,Piece.blackPoint); 
 	}
 	
+	
+	//정렬확인 2
 	public void testSortByPoint() throws Exception {
 		board.sortByPoint(BLACK);
+		assertEquals(16, board.nowPieceList.size());
+		assertEquals(QUEEN, board.nowPieceList.get(0).getType());
+		assertEquals(ROOK, board.nowPieceList.get(1).getType());
+		assertEquals(ROOK, board.nowPieceList.get(2).getType());
+		assertEquals(BISHOP, board.nowPieceList.get(3).getType());
+		assertEquals(BISHOP, board.nowPieceList.get(4).getType());
+		assertEquals(KNIGHT, board.nowPieceList.get(5).getType());
+		assertEquals(KNIGHT, board.nowPieceList.get(6).getType());
+		assertEquals(PAWN, board.nowPieceList.get(7).getType());
+		assertEquals(KING, board.nowPieceList.get(15).getType());
+		
 	}
 	
 }
