@@ -10,14 +10,17 @@ package pieces;
 
 public class Piece  {
 	
+	//보드판위에 있는 말의 숫자와 말들의 point관리 
 	public static int whiteCount;
 	public static int blackCount;
-	
 	public static double whitePoint;
 	public static double blackPoint;
-	
-	
 
+	private Color color;
+	private Type type;
+	private char symbol;
+	private double point;
+	
 	public enum Color {
 		BLACK, WHITE, NONE
 	}
@@ -27,7 +30,7 @@ public class Piece  {
 		
 		private char symbol;
 		private double point;
-		//enum 생성자 
+
 		private Type(char symbol, double point){
 			this.symbol = symbol;
 			this.point = point;
@@ -41,16 +44,7 @@ public class Piece  {
 		}
 	}
 
-	private Color color;
-	private Type type;
-	private char symbol;
-	private double point;
-	
-	/**
-	 * private
-	 * 생성자 
-	 * @param 색상여부, Type 
-	 */
+	//생성자 
 	private Piece(Color color, Type type) {
 		this.color = color;
 		this.type = type;
@@ -63,15 +57,12 @@ public class Piece  {
 			}
 	}
 	
-	
-	
 	public static Piece createWhite(Type type) {
 		whiteCount++;
 		whitePoint += type.getPoint();
 		return new Piece(Color.WHITE, type);
 	}
 	
-
 	public static Piece createBlack(Type type) {
 		blackCount++;
 		blackPoint += type.getPoint();
@@ -82,7 +73,6 @@ public class Piece  {
 		return new Piece(Color.NONE, Type.Empty);
 	}
 
-		
 	public static Piece createWhitePawn(){
 		return createWhite(Type.PAWN);
 	}
@@ -129,65 +119,73 @@ public class Piece  {
 	public static Piece createBlackKing(){
 		return createBlack(Type.KING);
 	}
-	
-
-
 
 	/**
-	 * 클래스의 색상확인 메소드 
-	 * @return 블랙, 화이트 
+	 * resetCount
+	 * 목적 : test할때 count&point 초기화를 하기 위해서   
+	 */
+	public static void resetCount() {
+		Piece.blackCount = 0 ; 
+		Piece.whiteCount = 0 ;
+		Piece.blackPoint = 0;
+		Piece.whitePoint = 0;
+	}
+	
+	/**
+	 * getColor
+	 * 목적 : Piece의 색 확인 
+	 * @return color
 	 */
 	public Color getColor() {
 		return this.color;
 	}
-
 	
 	/**
-	 * type 확인 
+	 * getType
+	 * 목적 : Piece의 종류 확인 
 	 * @return type
 	 */
 	public Type getType() {
 		return this.type;
 	}
 
-
 	/**
-	 * 심볼 확인 
-	 * @return symbol
+	 * getColor
+	 * 목적 : Piece의 symbol 확인 
+	 * @return symbol 
 	 */
 	public char getSymbol() {
 		return this.symbol;
 	}
 
-
 	/**
-	 * point 확인 
-	 * @return point 
+	 * getPoint
+	 * 목적 : Piece의 포인트 확인 
+	 * @return point
 	 */
 	public double getPoint() {
 		return this.point;
 	}
 
-
-	
 	/**
-	 * 흰색말인 확인 
-	 * @return true or false
+	 * isWhite()
+	 * 목적 : 흰색말인지 확인  
+	 * @return true, false
 	 */
 	public boolean isWhite() {
-		if (this.color == Color.WHITE){
+		if (this.color.equals(Color.WHITE)){
 			return true;
 		}
 		return false;
 	}
 
-	
 	/**
-	 * 검은말인 확인 
-	 * @return true or false
+	 * isBlack()
+	 * 목적 : 검은색말인지 확인  
+	 * @return true, false
 	 */
 	public boolean isBlack() {
-		if (this.color == Color.BLACK){
+		if (this.color.equals(Color.BLACK)){
 			return true;
 		}
 		return false;
@@ -221,22 +219,9 @@ public class Piece  {
 		return true;
 	}
 	
-	
 	/**
-	 * resetCount
-	 * testCode 실행을 위한 메소드 
-	 * blackCount, whiteCount, blackPoint, whitePoint 초기화 
-	 */
-	public static void resetCount() {
-		Piece.blackCount = 0 ; 
-		Piece.whiteCount = 0 ;
-		Piece.blackPoint = 0;
-		Piece.whitePoint = 0;
-	}
-
-
-	/**
-	 * color확인 메소드 
+	 * isColor
+	 * 색상이 맞는지 확인
 	 * @param color 확인하고자 하는 color 
 	 * @return true or false
 	 */
@@ -248,8 +233,12 @@ public class Piece  {
 		return false;
 	}
 
-
-
+	/**
+	 * compare
+	 * 목적 : 두 Piece의 point를 비교
+	 * @param target 비교하는 대상 
+	 * @return 결과값 
+	 */
 	public double compare(Piece target) {
 		return (this.getPoint() - target.getPoint());
 	}

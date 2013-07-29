@@ -106,7 +106,6 @@ public class Row {
 		}
 	}
 
-
 	/**
 	 * setColumn
 	 * 목적 : 정해진 위치의 Piece를 바꾸는 것
@@ -115,7 +114,6 @@ public class Row {
 	 * @param type 바꾸고자 하는 말의 종류 
 	 * @param color 말의 색 
 	 */
-
 	public void setColumn(int col, Type type, Color color) {
 		if (color == BLACK){
 			rowList.set(col, Piece.createBlack(type));			
@@ -128,27 +126,23 @@ public class Row {
 		else{
 			rowList.set(col, Piece.createEmpty());						
 		}
-		
 	}
-	
-
 
 	/**
 	 * findPawnPosition
 	 * 목적 : 열에서 체스판 위에 있는 pawn을 hashmap으로 표현  
 	 * 활용 : Board Class_checkPawn() 
+	 * 필요한 메소드 : isPawn()
+	 * 필요한 메소드 : isContain()
 	 * @param color 
 	 * @param pawnPosition 
 	 * @return hashmap : pawn의 열의 위치와 숫자
 	 */
 	public HashMap<Integer, Integer> findPawnPosition(Color color, HashMap<Integer, Integer> pawnPosition) {
 		int column = 0;//열의 위치를 파악하기 위해서 
-		
-
 		for (Piece piece : rowList) {
-			if (ispawn(color, piece)){
-				if(isContain(pawnPosition, column)){
-
+			if (ispawn(color, piece)){ //원하는 색의 pawn이라면 
+				if(isContain(pawnPosition, column)){ //열(key)이 존재할 경우 숫자(value) +1 
 					int newVal = pawnPosition.get(column)+1; // value에 +1
 
 					pawnPosition.remove(column); //기존 value값을 삭제 
@@ -156,8 +150,7 @@ public class Row {
 				}
 				else{
 					pawnPosition.put(column, 1); //열이 없을 경우 key 생성 후 1 추가 
-			}
-			
+				}
 			}
 			column++; //다음 열 
 		}
@@ -166,9 +159,12 @@ public class Row {
 
 	
 	/**
-	 * row클래스 checkPawn 메소드에서 if 조건에 대한 메소드 
+	 * isPawn
+	 * 목적 : 같은 색의 Pawn인지 확인 
+	 * 활용 : Row Class_findPawnPosition 
 	 * pawn 클래스인지, 같은 색인지를 물어보는 메소드 
-	 * @param color, piece
+	 * @param color 기준이 되는 색 
+	 * @param piece 확인고자하는 말 
 	 * @return true, false
 	 */
 	private boolean ispawn(Color color, Piece piece) {
@@ -178,8 +174,9 @@ public class Row {
 
 	
 	/**
-	 * row클래스 checkPawn 메소드에서 if 조건에 대한 메소드 
-	 * 열의 위치가 같은지를 물어보는 메소드 
+	 * isContain
+	 * 목적 : key(열)이 존재하는 지 확인 
+	 * 활용 : Row Class_findPawnPosition()  
 	 * @param pawnPosition
 	 * @param column
 	 * @return true, false
@@ -190,19 +187,20 @@ public class Row {
 	
 	
 	/**
-	 * 보드판에서 색깔에 맞는 말들은 모두 취합 
+	 * addNowPiece
+	 * 목적 : 존재하는 Piece를 리스트에 추가
+	 * 활용 : Board Class_getBowPiece() 
 	 * @param color 찾고자 하는 색 
 	 * @param nowPieceList 추가하는 리스트 
 	 * @return 추가한 후 리스트 반환 
 	 */
-	public ArrayList<Piece> addPiece(Color color, ArrayList<Piece> nowPieceList) {
+	public ArrayList<Piece> addNowPiece(Color color, ArrayList<Piece> nowPieceList) {
 		for (Piece piece : rowList) {
 			if (piece.isColor(color)) {
 				nowPieceList.add(piece);
 			}
 		}
 		return nowPieceList;
-		
 	}
 	
 	/**
@@ -211,7 +209,6 @@ public class Row {
 	 * 활용 : Board Class_BoardPrint() 
 	 * @return 행에 존재하는 열들의 모음 
 	 */
-	
 	public String rowPrint() {
 		StringBuilder row = new StringBuilder();
 		
@@ -221,6 +218,4 @@ public class Row {
 		return row.toString();
 	}
 	
-	
-
 }

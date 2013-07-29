@@ -80,7 +80,7 @@ public class Board {
 	/**
 	 * getMapInfo
 	 * 목적 : 좌표에 있는 SYMBOL(체스말) 확인 
-	 * 활용하는 메소드 : Position Class_transfer() 인풋값을 좌표로 변환  
+	 * 필요한 메소드 : Position Class_transfer() 인풋값을 좌표로 변환  
 	 * @param 찾고하는 위치  
 	 * @return 찾은 좌표값(행, 열)의 SYMBOL
 	 */
@@ -95,7 +95,7 @@ public class Board {
 	/**
 	 * boardPrint
 	 * 목적 : 체스판 전체 출력 
-	 * 활용하는 메소드 : Row Class_rowPrint()
+	 * 필요한 메소드 : Row Class_rowPrint()
 	 * @param 프린트 하고 싶은 보드 
 	 * @return 보드 전체 
 	 */
@@ -122,7 +122,7 @@ public class Board {
 	/**
 	 * checkPoint
 	 * 목적 : 체스판의 포인트 확인
-	 * 활용하는 메소드 : Board Class_checkPawn() 예외처리 해야될 pawn의 숫자를 알려줌 
+	 * 필요한 메소드 : Board Class_checkPawn() 예외처리 해야될 pawn의 숫자를 알려줌 
 	 * @param 확인하고 하는 색 
 	 * @return 점수
 	 */
@@ -142,7 +142,7 @@ public class Board {
 	/**
 	 * checkPawn
 	 * 목적 : checkPoint 예외처리를 위해서 숫자확인
-	 * 활용하는 메소드 : Row Class_finsPawnPosition() 
+	 * 필요한 메소드 : Row Class_finsPawnPosition() 
 	 * @return 예외처리 해야될 pawn의 수 
 	 */
 	private int checkPawn(Color color){
@@ -169,7 +169,7 @@ public class Board {
 	/**
 	 * countByTyoeColor
 	 * 목적 : 색과 말의 종류를 받아서 보드판 위에 숫자 확인
-	 * 활용하는 메소드 : Row Class의 countByTypeColor() 각 열에서 색과 말의 종류가 일치하는 수를 알려줌 
+	 * 필요한 메소드 : Row Class의 countByTypeColor() 각 열에서 색과 말의 종류가 일치하는 수를 알려줌 
 	 * @return count
 	 */
 	public int countByTypeColor(Color color, Type type) {
@@ -183,11 +183,11 @@ public class Board {
 	/**
 	 * changePiece 
 	 * 목적 : 원하는 위치에 원하는 말 삽입
-	 * 활용하는 메소드 : Board Class_getMapInfo() 좌표의 말 확인 
-	 * 활용하는 메소드 : Board Class_isNotEmpty() 삽입하는 곳이 비어있는지 확인  
-	 * 활용하는 메소드 : Row Class_setColmun() row에 접근해서 해당하는 열의 값을 변경   
-	 * 활용하는 메소드 : Position Class_transfer() 매개변수의 String을 좌표값으로 변경   
-	 * 활용하는 메소드 : Piece Class_changeInfo() 추가/삭제에 따른 숫자/포인트 내용 변경 
+	 * 필요한 메소드 : Board Class_getMapInfo() 좌표의 말 확인 
+	 * 필요한 메소드 : Board Class_isNotEmpty() 삽입하는 곳이 비어있는지 확인  
+	 * 필요한 메소드 : Row Class_setColmun() row에 접근해서 해당하는 열의 값을 변경   
+	 * 필요한 메소드 : Position Class_transfer() 매개변수의 String을 좌표값으로 변경   
+	 * 필요한 메소드 : Piece Class_changeInfo() 추가/삭제에 따른 숫자/포인트 내용 변경 
 	 * @param string : 삽입하고자 하는 좌표 
 	 * @param type : 삽입하고자 하는 말
 	 * @param Color : 삽입하고자 하는 말의 색 
@@ -222,8 +222,8 @@ public class Board {
 	/**
 	 * movePiece
 	 * 원하는 말을 다른 곳으로 옮김 
-	 * 활용하는 메소드 : Board Class_getMapInfo() 좌표값을 받아서 말의 정보를 알려줌
-	 * 활용하는 메소드 : Board Class_changeInfo()
+	 * 필요한 메소드 : Board Class_getMapInfo() 좌표값을 받아서 말의 정보를 알려줌
+	 * 필요한 메소드 : Board Class_changeInfo()
 	 * @param fromXAndY 옮기고자 하는 말의 현재 위치 
 	 * @param toXAndY 옮기고자 하는 위치
 `	 */
@@ -245,10 +245,10 @@ public class Board {
 	/**
 	 * sortByPoint
 	 * 목적 : 현재 존재하는 말의 리스트를 세기(point)를 기준으로 정렬 
-	 * 활용하는 메소드 : Board Class_getNowPiece() 현재 보드판위에 있는 말의 리스트 
-	 * 활용하는 메소드 : Board Class_continueCompare() 정렬할때 계속 비교하기 위해서  
-	 * 활용하는 메소드 : Board Class_isSort() 정렬이 되어 있는지 확인   
-	 * 활용하는 메소드 : Piece Class_compare() 두 말의 point비교  
+	 * 필요한 메소드 : Board Class_getNowPiece() 현재 보드판위에 있는 말의 리스트 
+	 * 필요한 메소드 : Board Class_continueCompare() 정렬할때 계속 비교하기 위해서  
+	 * 필요한 메소드 : Board Class_isSort() 정렬이 되어 있는지 확인   
+	 * 필요한 메소드 : Piece Class_compare() 두 말의 point비교  
 	 * @param color 정렬하고자 하는 색 
 	 * @return 정렬된 리스트 
 	 * getNowPiece메소드 활용 
@@ -273,11 +273,12 @@ public class Board {
 	 * getNowPiece
 	 * 목적 : 현재 존재하는 말을 리스트로 만들기 
 	 * 활용 : Board Class_sortByPoint() 현재 존재하는 말의 리스트를 알려줌 
+	 * 필요한 메소드 : Row Class_addNowPiece() 현재 존재하는 말의 리스트에 추가  
 	 * @param color리스트로 만들고자 하는 색 
 	 */
 	private void getNowPiece(Color color) {
 		for (Row row : chessBoard) {
-			nowPieceList = row.addPiece(color, nowPieceList);
+			nowPieceList = row.addNowPiece(color, nowPieceList);
 		}
 	}
 	
@@ -296,8 +297,8 @@ public class Board {
 	 * continueCompare
 	 * 목적 : index값이 앞의 index보다 작을 때까지 비교 
 	 * 활용 : Board Class_sortByPoint()
-	 * 활용하는 메소드 : Board Class_isFirstIndex() 첫번째 index인지 확인 
-	 * 활용하는 메소드 : Board Class_isSort() 정렬되어 있는지 확인 
+	 * 필요한 메소드 : Board Class_isFirstIndex() 첫번째 index인지 확인 
+	 * 필요한 메소드 : Board Class_isSort() 정렬되어 있는지 확인 
 	 */
 	private void continueCompare(int index) {
 		//while loop에서 +1 씩 해주어서 앞의 값까지 비교 
